@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-200">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    <%= locals.title || "Express OpenID Connect" %>
+  </title>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
+  <link rel="shortcut icon" href="//cdn2.auth0.com/styleguide/latest/lib/logos/img/favicon.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/solid.css"
+    integrity="sha384-r/k8YTFqmlOaqRkZuSiE9trsrDXkh07mRaoGBMoDcmA58OHILZPsk29i2BsFng1B" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css"
+    integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://cdn.auth0.com/js/auth0-samples-theme/1.0/css/auth0-theme.min.css" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <link rel="icon" href="/images/fevicon.png" type="image/gif" />
+  <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
+
+  <link rel="icon" href="/images/favicon.png" type="image/gif" />
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+    media="screen">
+    <link rel="stylesheet" href="/css/custom.css">
+
+</head>
+
+<body>
+  <div class="nav-container">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container">
+        <div class="navbar-brand logo" style="margin: 0;"></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="margin: 0;">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a href="/" class="nav-link route-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/products" class="nav-link route-link">Products</a>
+            </li>
+            <li class="nav-item">
+              <a href="/profile" class="nav-link route-link">Profile</a>
+            </li>
+            <li class="nav-item">
+              <% if(!locals.isAuthenticated) { %>
+              <a href="/login">
+                <button class="btn btn-primary btn-margin">
+                  Log in
+                </button>
+              </a>
+              <% } else { %>
+                <a href="/logout">
+                  <button class="btn btn-primary btn-margin">
+                    Log out
+                  </button>
+                </a>
+                <% } %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>

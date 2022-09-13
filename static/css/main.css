@@ -1,0 +1,22 @@
+.hidden {
+  display: none;
+}
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.navbar {
+  min-height: 115px;
+}
+
+.banner-main {
+  align-items: center;
+  position: absolute;
+  width: 100vw;
+  right: 0;
+}
+
+.main-content {
+  margin-top: 0!important;
+}

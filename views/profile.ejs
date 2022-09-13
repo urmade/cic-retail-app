@@ -1,0 +1,43 @@
+<%- include('partials/header') -%>
+<div class="profileContainer" style="text-align: center;">
+  <h1 class="text-4xl mb-4">Welcome back, <%= user.given_name %>!</h1>
+
+  <h2>Your next appointment:</h2>
+  <p>September 30th, 2:00pm</p>
+
+  <div class="loyaltyCards">
+    <h3>Active Partner Programs</h3>
+    <div class="loyaltyCard">
+      <p>BeautyShoppers</p>
+    </div>
+    <div class="loyaltyCard">
+      <p>AMEX Benefits</p>
+    </div>
+    <div class="loyaltyCard">
+      <p>MoneyDrainers Exclusive</p>
+    </div>
+    <!-- <div class="loyaltyCta">
+      <p>+ Add new card</p>
+    </div> -->
+
+    <h3>Add new Cards</h3>
+    <a href="/loyaltyCard/facebook">
+      <div class="loyaltyCard inactive">
+        <p>FashionClub</p>
+      </div>
+    </a>
+    <a href="/loyaltyCard/apple">
+      <div class="loyaltyCard inactive">
+        <p>Scrooge Inc.</p>
+      </div>
+    </a>
+    <a href="/loyaltyCard/windowslive">
+      <div class="loyaltyCard inactive">
+        <p>OnlyDiscounts</p>
+      </div>
+    </a>
+    
+  </div>
+</div>
+  
+<%- include('partials/footer') -%>

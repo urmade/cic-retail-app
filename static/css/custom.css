@@ -1,0 +1,25 @@
+.profileContainer {
+    padding: 40px 0;
+}
+.loyaltyCards {
+    display: block;
+    text-align: left;
+    margin: 20px 10px;
+    padding: 20px;
+    background-color: #c0c0c0;
+    border-radius: 20px;
+}
+.loyaltyCard {
+    padding: 20px;
+    background: whitesmoke;
+    width: 80%;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+.loyaltyCard.inactive {
+    opacity: .5;
+}
+.loyaltyCta {
+    display: flex;
+    align-items: center;
+}
