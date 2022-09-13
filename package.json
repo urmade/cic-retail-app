@@ -1,6 +1,8 @@
 {
   "name": "auth0-express-webapp-sample",
-  "scripts": {},
+  "scripts": {
+    "build": "npm install && node server.js"
+  },
   "dependencies": {
     "debug": "~2.6.9",
     "dotenv": "^6.1.0",
