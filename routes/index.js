@@ -29,6 +29,14 @@ router.get("/payments", requiresAuth(), (req,res) => {
     title: 'Payments'
   })
 })
+router.get("/checkin", requiresAuth(), (req,res) => {
+  res.render('checkIn', {
+    isAuthenticated: true,
+    firstName: req.oidc.idTokenClaims.given_name,
+    userProfile: JSON.stringify(req.oidc.user, null, 2),
+    title: 'Check-In'
+  })
+})
 
 router.get("/loyaltyCard/:card",(req,res) => {
   res.oidc.login({

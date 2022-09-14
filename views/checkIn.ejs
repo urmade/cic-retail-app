@@ -4,36 +4,9 @@
 
     </div>
 
-    <div class="paymentMethods loyaltyCards">
-        <h3>Your payment methods</h3>
-
-    </div>
-
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script>
 
-        const paymentMethods = [{
-            "name": "Giro Deluxe",
-            "preferred": false
-        },
-        {
-            "name": "Visa Express",
-            "preferred": false
-        },
-        {
-            "name": "Okta Coin",
-            "preferred": true
-        }]
-        function renderPaymentMethods() {
-            const container = document.querySelector(".paymentMethods");
-            paymentMethods.forEach(method => {
-                container.innerHTML += `
-            <div class="loyaltyCard">
-        <p>${method.name}</p>
-      </div>
-            `
-            })
-        }
 
         function onScanSuccess(decodedText, decodedResult) {
             if(/^(ftp|http|https):\/\/[^ "]+$/.test(decodedText)) {
@@ -49,6 +22,5 @@
             "cameraOutput", { fps: 10, qrbox: 250 });
         html5QrcodeScanner.render(onScanSuccess);
 
-        renderPaymentMethods();
     </script>
     <%- include('partials/footer') -%>
