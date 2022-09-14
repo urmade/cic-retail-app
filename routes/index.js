@@ -15,10 +15,20 @@ router.get('/', function (req, res, next) {
 
 router.get('/profile', requiresAuth(), function (req, res, next) {
   res.render('profile', {
+    isAuthenticated: true,
+    firstName: req.oidc.idTokenClaims.given_name,
     userProfile: JSON.stringify(req.oidc.user, null, 2),
     title: 'Profile page'
   });
 });
+router.get("/payments", requiresAuth(), (req,res) => {
+  res.render('payPage', {
+    isAuthenticated: true,
+    firstName: req.oidc.idTokenClaims.given_name,
+    userProfile: JSON.stringify(req.oidc.user, null, 2),
+    title: 'Payments'
+  })
+})
 
 router.get("/loyaltyCard/:card",(req,res) => {
   res.oidc.login({

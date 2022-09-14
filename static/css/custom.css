@@ -1,6 +1,10 @@
 .profileContainer {
     padding: 40px 0;
 }
+.navIndicator {
+    margin-right: 10px;
+    display: inline-block;
+}
 .loyaltyCards {
     display: block;
     text-align: left;
@@ -16,10 +20,17 @@
     border-radius: 5px;
     margin: 10px 0;
 }
-.loyaltyCard.inactive {
+.inactiveCards .loyaltyCard {
     opacity: .5;
 }
 .loyaltyCta {
     display: flex;
     align-items: center;
+}
+
+.payButton {
+    display: block;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: lightblue;
 }

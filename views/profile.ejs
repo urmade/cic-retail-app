@@ -1,43 +1,87 @@
 <%- include('partials/header') -%>
-<div class="profileContainer" style="text-align: center;">
-  <h1 class="text-4xl mb-4">Welcome back, <%= user.given_name %>!</h1>
+  <div class="profileContainer" style="text-align: center;">
+    <h1 class="text-4xl mb-4">Welcome back, <%= user.given_name %>!</h1>
 
-  <h2>Your next appointment:</h2>
-  <p>September 30th, 2:00pm</p>
+    <h2>Your next appointment:</h2>
+    <p>September 30th, 2:00pm</p>
 
-  <div class="loyaltyCards">
-    <h3>Active Partner Programs</h3>
-    <div class="loyaltyCard">
-      <p>BeautyShoppers</p>
-    </div>
-    <div class="loyaltyCard">
-      <p>AMEX Benefits</p>
-    </div>
-    <div class="loyaltyCard">
-      <p>MoneyDrainers Exclusive</p>
-    </div>
-    <!-- <div class="loyaltyCta">
-      <p>+ Add new card</p>
-    </div> -->
+    <div class="loyaltyCards" active="true">
+      <h3 onclick="loadLoyaltyCards()"><span class="navIndicator">></span>Partner Programs</h3>
+      <div class="activeCards">
+      </div>
 
-    <h3>Add new Cards</h3>
-    <a href="/loyaltyCard/facebook">
-      <div class="loyaltyCard inactive">
-        <p>FashionClub</p>
+      <div class="inactiveCards">
       </div>
-    </a>
-    <a href="/loyaltyCard/apple">
-      <div class="loyaltyCard inactive">
-        <p>Scrooge Inc.</p>
-      </div>
-    </a>
-    <a href="/loyaltyCard/windowslive">
-      <div class="loyaltyCard inactive">
-        <p>OnlyDiscounts</p>
-      </div>
-    </a>
-    
+
+
+    </div>
   </div>
-</div>
-  
-<%- include('partials/footer') -%>
+
+  <script>
+    function loadLoyaltyCards() {
+      const outerBox = document.querySelector(".loyaltyCards");
+      const activeCards = document.querySelector(".activeCards");
+      const inactiveCards = document.querySelector(".inactiveCards");
+      const indicator = document.querySelector(".navIndicator");
+
+      if (outerBox.getAttribute("active") === "true") {
+        activeCards.innerHTML = "";
+        inactiveCards.innerHTML = "";
+        indicator.style.transform = "rotate(0deg)";
+        outerBox.setAttribute("active", "false");
+      }
+      else {
+        outerBox.setAttribute("active", "true");
+        indicator.style.transform = "rotate(90deg)";
+        const cards = [{
+          name: "BeautyShoppers",
+          active: true
+        },
+        {
+          name: "AMEX Benefits",
+          active: true
+        },
+        {
+          name: "MoneyDrainers Exclusive",
+          active: true
+        },
+        {
+          name: "FashionClub",
+          active: false,
+          connectionName: "facebook"
+        },
+        {
+          name: "Scrooge Inc.",
+          active: false,
+          connectionName: "apple"
+        },
+        {
+          name: "OnlyDiscounts",
+          active: false,
+          connectionName: "windowslive"
+        }]
+
+        cards.forEach(card => {
+          if (card.active) {
+            activeCards.innerHTML += `
+      <div class="loyaltyCard">
+        <p>${card.name}</p>
+      </div>
+      `
+          }
+          else {
+            inactiveCards.innerHTML += `
+      <a href="/loyaltyCard/${card.connectionName}">
+        <div class="loyaltyCard inactive">
+          <p>${card.name}</p>
+        </div>
+      </a>
+      `
+          }
+        });
+
+      }
+    }
+
+  </script>
+  <%- include('partials/footer') -%>

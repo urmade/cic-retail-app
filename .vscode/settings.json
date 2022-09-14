@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/5582a3d4-1f2d-4a3e-8c3f-596d14bf6cb1/microsoft.web/sites/subscriptions/5582a3d4-1f2d-4a3e-8c3f-596d14bf6cb1/resourceGroups/DefaultResourceGroup-WEU/providers/Microsoft.Web/sites/cic-retail-demo-app",
+    "appService.deploySubpath": "."
+}
