@@ -331,11 +331,11 @@ ul.btn li:last-child {
 /*-- navigation--*/
 
 .logo {
-     background-image: url('/images/logo.png');
+     background-image: url('https://pbs.twimg.com/profile_images/1554132968645398528/5kW7cJui_400x400.png');
      width: 10rem;
      height: 4.25rem;
      background-repeat: no-repeat;
-     background-size: cover;
+     background-size: contain;
  }
 
 .navigation.navbar {
