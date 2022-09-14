@@ -1,54 +1,60 @@
 <%- include('partials/header') -%>
+    <h2>Your open orders</h2>
+    <div class="orders">
+        <div class="order">
 
-    <div id="cameraOutput" width="80vw">
-
+            <details>
+                <summary>
+                    15.09.2022 - 3 Items - 89,76€
+                </summary>
+                <div class="item">
+                    <div class="description">USB Cable 3m</div>
+                    <div class="price">9,99€</div>
+                </div>
+                <div class="item">
+                    <div class="description">Gaming Mousepad "Xtreme Pro Ultra Plus"</div>
+                    <div class="price">16,48€</div>
+                </div>
+                <div class="item">
+                    <div class="description">Desktop Microphone</div>
+                    <div class="price">63,29€</div>
+                </div>
+            </details>
+            <button class="payButton" onclick="showPayModal()">Complete order</button>
+        </div>
     </div>
-
-    <div class="paymentMethods loyaltyCards">
-        <h3>Your payment methods</h3>
-
+    <div class="payModal">
+        <h3>Payment: 89,76€</h3>
+        <label for="paymentProvider">Choose your payment method:</label>
+        <select id="paymentProvider">
+            <option>PayPal (Preferred)</option>
+            <option>Miles & More</option>
+            <option>Okta Coin</option>
+        </select>
+        <button class="payButton" id="confirmOrder" onclick="pay()">
+            Place order
+        </button>
     </div>
-
-    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script>
-
-        const paymentMethods = [{
-            "name": "Giro Deluxe",
-            "preferred": false
-        },
-        {
-            "name": "Visa Express",
-            "preferred": false
-        },
-        {
-            "name": "Okta Coin",
-            "preferred": true
-        }]
-        function renderPaymentMethods() {
-            const container = document.querySelector(".paymentMethods");
-            paymentMethods.forEach(method => {
-                container.innerHTML += `
-            <div class="loyaltyCard">
-        <p>${method.name}</p>
-      </div>
-            `
-            })
+        function showPayModal() {
+            document.querySelector(".payModal").style.display = "block";
         }
-
-        function onScanSuccess(decodedText, decodedResult) {
-            if(/^(ftp|http|https):\/\/[^ "]+$/.test(decodedText)) {
-                html5QrcodeScanner.clear();
-                window.location.replace(decodedText);
-            }
-            else console.log("Faulty Link");
-            // Handle on success condition with the decoded text or result.
-            console.log(`Scan result: ${decodedText}`, decodedResult);
+        function pay() {
+            const button = document.querySelector("#confirmOrder");
+            button.style.height = "128.23px";
+            setTimeout(() => {
+                button.innerHTML = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
+                setTimeout(() => {
+                    button.style.opacity = 0;
+                    button.style.height = "65px";
+                    setTimeout(() => {
+                        button.style.opacity = "100%";
+                        button.innerHTML = "Order confirmed!";
+                        button.style.background = "lightgreen";
+                    }, 500);
+                }, 2000)
+            },500)
+            
         }
-
-        var html5QrcodeScanner = new Html5QrcodeScanner(
-            "cameraOutput", { fps: 10, qrbox: 250 });
-        html5QrcodeScanner.render(onScanSuccess);
-
-        renderPaymentMethods();
     </script>
     <%- include('partials/footer') -%>

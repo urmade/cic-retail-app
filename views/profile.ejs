@@ -83,5 +83,29 @@
       }
     }
 
+
+    const paymentMethods = [{
+      "name": "Giro Deluxe",
+      "preferred": false
+    },
+    {
+      "name": "Visa Express",
+      "preferred": false
+    },
+    {
+      "name": "Okta Coin",
+      "preferred": true
+    }]
+    function renderPaymentMethods() {
+      const container = document.querySelector(".paymentMethods");
+      paymentMethods.forEach(method => {
+        container.innerHTML += `
+            <div class="loyaltyCard">
+        <p>${method.name}</p>
+      </div>
+            `
+      })
+    }
+
   </script>
   <%- include('partials/footer') -%>
