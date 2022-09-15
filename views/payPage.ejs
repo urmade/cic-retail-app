@@ -1,28 +1,8 @@
 <%- include('partials/header') -%>
-    <h2>Your open orders</h2>
+    <h2 style="text-align: center; margin: 20px;">Your open orders</h2>
     <div class="orders">
-        <div class="order">
-
-            <details>
-                <summary>
-                    15.09.2022 - 3 Items - 89,76€
-                </summary>
-                <div class="item">
-                    <div class="description">USB Cable 3m</div>
-                    <div class="price">9,99€</div>
-                </div>
-                <div class="item">
-                    <div class="description">Gaming Mousepad "Xtreme Pro Ultra Plus"</div>
-                    <div class="price">16,48€</div>
-                </div>
-                <div class="item">
-                    <div class="description">Desktop Microphone</div>
-                    <div class="price">63,29€</div>
-                </div>
-            </details>
-            <button class="payButton" onclick="showPayModal()">Complete order</button>
-        </div>
     </div>
+
     <div class="payModal">
         <h3>Payment: 89,76€</h3>
         <label for="paymentProvider">Choose your payment method:</label>
@@ -36,6 +16,41 @@
         </button>
     </div>
     <script>
+        function loadOrders() {
+            fetch("/api/orders").then(orders => {
+                orders.json().then(orderArray => {
+                    console.log(orderArray);
+                    orderArray.forEach(order => {
+                        console.log(order);
+                        if (order.order_id.payed) return;
+                        const date = new Date(order.order_id.order_date);
+                        let htmlstring = `
+                        <div class="order">
+                        <details>
+                            <summary>
+                                ${date.getDate()}.${date.getMonth()}.${date.getFullYear()} - ${order.items.length} Items
+                            </summary>
+                        `
+                        order.items.forEach(item => {
+                            htmlstring += `
+                            <div class="item">
+                                <div class="description">${item.item}</div>
+                                <div class="price">${item.price}</div>
+                            </div>
+                            `
+                        })
+                        htmlstring += `
+                        </details>
+                        <button class="payButton" onclick="showPayModal()">Complete order</button>
+                        </div>`;
+                        console.log(htmlstring);
+                        document.querySelector(".orders").innerHTML += htmlstring;
+                    })
+
+
+                })
+            })
+        }
         function showPayModal() {
             document.querySelector(".payModal").style.display = "block";
         }
@@ -53,8 +68,9 @@
                         button.style.background = "lightgreen";
                     }, 500);
                 }, 2000)
-            },500)
-            
+            }, 500)
+
         }
+        loadOrders();
     </script>
     <%- include('partials/footer') -%>

@@ -19,7 +19,12 @@ app.use(express.json());
 
 const config = {
   authRequired: false,
-  auth0Logout: true
+  auth0Logout: true,
+  authorizationParams: {
+    response_type: 'code',
+    audience: "https://cache-service",
+    scope: "openid email profile currentuser_read:orders currentuser_delete:order"
+  }
 };
 
 const port = process.env.PORT || 3000;
